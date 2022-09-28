@@ -145,7 +145,7 @@ function uploadS3() {
         
         formdata.append("uploadfile", file.files[0])        
         
-        axios.post('/storage/upload-image', formdata, {
+        axios.post('http://13.125.100.97/storage/upload-image', formdata, {
             headers: {
                 "Content-Type": "multipart/form-data;charset=UTF-8",
                 "charset-encoding":'UTF-8'
