@@ -85,6 +85,7 @@ async function setApprovalState() {
 
 async function getNftList() {
     try {
+        console.log(axios)
         document.getElementById('resultbrowsers').textContent = `NFT 목록을 조회 중입니다.`
         console.log('NFT 목록을 조회 중입니다.')
         let nftList = await mintingEvent.methods.getNftTokens(accounts[0]).call()
@@ -93,14 +94,19 @@ async function getNftList() {
 
         let cnt = 1        
         nftList.map(async nft => {            
-            try {                
-                let nftInfo = ((await axios({
-                    method:'post',
-                    url:`http://localhost:5501/storage/read-metadata`,
-                    data: {
+            try {     
+                let params = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json;charset=utf-8"
+                    },
+                    body:JSON.stringify({
                         key : nft.nftTokenURI
-                    }
-                }))).data                
+                    })
+                }
+                let response = await fetch(`http://localhost:5501/storage/read-metadata`, params)
+                let nftInfo = await response.json()
+                
                 let htmlTag =
                     `<td>${cnt++}</td>
                         <td>${nft.nftTokenId}</td>
