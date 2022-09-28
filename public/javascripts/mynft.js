@@ -104,7 +104,7 @@ async function getNftList() {
                         key : nft.nftTokenURI
                     })
                 }
-                let response = await fetch(`http://localhost:5501/storage/read-metadata`, params)
+                let response = await fetch(`http://13.125.100.97/storage/read-metadata`, params)
                 let nftInfo = await response.json()
                 
                 let htmlTag =

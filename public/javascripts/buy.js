@@ -82,13 +82,18 @@ async function getSaleNftList() {
         let cnt = 1        
         nftList.map(async nft => {            
             try {              
-                let nftInfo = ((await axios({
-                    method:'get',
-                    url:`http://localhost:5501/storage/read-metadata`,
-                    params: {
+                let params = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json;charset=utf-8"
+                    },
+                    body:JSON.stringify({
                         key : nft.nftTokenURI
-                    }
-                }))).data                  
+                    })
+                }
+                let response = await fetch(`http://13.125.100.97/storage/read-metadata`, params)
+                let nftInfo = await response.json()
+                                 
                 let htmlTag =
                     `<td>${cnt++}</td>
                         <td>${nft.nftTokenId}</td>
