@@ -67,14 +67,14 @@ Object.defineProperties(
         },
         readMetadata : {
             value : (req, res, next) => {
+                console.error('check ' , req.query.key)
                 let params = {
                     Bucket: process.env.AWSBUKETNAME,
                     Key:req.query.key
                 }
-                debug(params)
+                
                 s3.getObject(params, (err, data) => {
-                    if(err) {
-                        debug(err)
+                    if(err) {                
                         res.status(400).send("error!")
                     }else {                        
                         res.status(200).send((JSON.parse(data.Body.toString())))
