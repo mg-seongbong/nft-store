@@ -209,7 +209,7 @@ function minting() {
     }
     
     axios({
-        url : '/storage/upload-metadata',
+        url : 'http://13.125.100.97/storage/upload-metadata',
         method: 'post',        
         data : metadata
     })
