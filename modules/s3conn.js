@@ -67,10 +67,10 @@ Object.defineProperties(
         },
         readMetadata : {
             value : (req, res, next) => {
-                console.error('check ' , req.query.key)
+                console.error('check ' , req.body)
                 let params = {
                     Bucket: process.env.AWSBUKETNAME,
-                    Key:req.query.key
+                    Key:req.body.key
                 }
                 
                 s3.getObject(params, (err, data) => {
