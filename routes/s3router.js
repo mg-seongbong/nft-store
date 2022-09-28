@@ -18,6 +18,6 @@ router.post('/upload-image', s3conn.uploadImage.single('uploadfile'), (req, res,
 
 router.post('/upload-metadata', s3conn.uploadMetadata);
 
-router.get('/read-metadata', s3conn.readMetadata);
+router.post('/read-metadata', s3conn.readMetadata);
 
 module.exports = router;

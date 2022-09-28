@@ -95,9 +95,9 @@ async function getNftList() {
         nftList.map(async nft => {            
             try {                
                 let nftInfo = ((await axios({
-                    method:'get',
+                    method:'post',
                     url:`http://localhost:5501/storage/read-metadata`,
-                    params: {
+                    data: {
                         key : nft.nftTokenURI
                     }
                 }))).data                
